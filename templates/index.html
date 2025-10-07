@@ -1,18 +1,91 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant">
 <head>
-    <title>我的讀書計畫</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的讀書計畫</title>
+  <style>
+    /* 背景與整體佈局 */
+    body {
+      font-family: "Noto Sans TC", sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-top: 60px;
+      color: #333;
+      font-size: 2.2em;
+      background: linear-gradient(to right, #00796b, #c2185b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      width: 80%;
+      max-width: 800px;
+    }
+
+    li {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      text-align: center;
+      padding: 20px;
+    }
+
+    li:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    a {
+      text-decoration: none;
+      font-size: 1.2em;
+      color: #00796b;
+      font-weight: 600;
+      display: block;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #c2185b;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 30px 0;
+      color: #777;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
 <body>
-    <h1>新北高中30921黃愷鈞的讀書計畫</h1>
-    <ul>
-        <li><a href="/competition">🎊競賽經驗</a></li>
-        <li><a href="/activities">🙀課外活動</a></li>
-        <li><a href="/leadership">🤩幹部經驗</a></li>
-        <li><a href="/club">♑社團經驗</a></li>
-        <li><a href="/electives">📃多元選修課程</a></li>
-        <li><a href="/ai">🤖AI應用</a></li>
-    </ul>
+  <h1>新北高中30921 黃愷鈞的讀書計畫</h1>
+
+  <ul>
+    <li><a href="/competition">🎊 競賽經驗</a></li>
+    <li><a href="/activities">🙀 課外活動</a></li>
+    <li><a href="/leadership">🤩 幹部經驗</a></li>
+    <li><a href="/club">♑ 社團經驗</a></li>
+    <li><a href="/electives">📃 多元選修課程</a></li>
+    <li><a href="/ai">🤖 AI 應用</a></li>
+  </ul>
+
+  <footer>© 2025 Huang Kai-Jun | 新北高中 30921</footer>
 </body>
 </html>
