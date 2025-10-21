@@ -2,6 +2,39 @@
 from flask import Flask, render_template
 
 app = Flask(__name__)
+@app.route('/')
+
+def index():
+    return render_template('index.html')
+
+@app.route('/competition')
+def competition():
+    return render_template('competition.html')
+
+@app.route('/activities')
+def activities():
+    return render_template('activities.html')
+
+@app.route('/leadership')
+def leadership():
+    return render_template('leadership.html')
+
+@app.route('/club')
+def club():
+    return render_template('club.html')
+
+@app.route('/electives')
+def electives():
+    return render_template('electives.html')
+
+@app.route('/ai')
+def ai():
+    return render_template('ai.html')
+
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
 # 建立問答集 Store questions and answers in a simple list for demonstration purposes
 questions_answers = {
     "蘋果": "apple",
@@ -37,40 +70,14 @@ questions_answers = {
     "護士": "nurse",
     "sad": "難過"
 }
-@app.route('/')
-def index():
-    return render_template('index.html')
 
-@app.route('/competition')
-def competition():
-    return render_template('competition.html')
 
-@app.route('/activities')
-def activities():
-    return render_template('activities.html')
-
-@app.route('/leadership')
-def leadership():
-    return render_template('leadership.html')
-
-@app.route('/club')
-def club():
-    return render_template('club.html')
-
-@app.route('/electives')
-def electives():
-    return render_template('electives.html')
-
-@app.route('/ai')
-def ai():
-    return render_template('ai.html')
 
 # 首頁/的處理
 @app.route('/')
 def index():
     return render_template('index.html', QA=questions_answers)
 
-    
 # 網頁/ask的處理
 @app.route('/ask', methods=['GET', 'POST'])
 def ask_question():
@@ -79,6 +86,9 @@ def ask_question():
         a = questions_answers[q]
         return render_template('ask.html', question=q, answer=a)
     return render_template('ask.html', question="", answer="")
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)
 
 if __name__ == '__main__':
     app.run(debug=True)
