@@ -1,12 +1,43 @@
-
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
+
+# 問答字典
+questions_answers = {
+    "蘋果": "apple", "apple": "蘋果",
+    "香蕉": "banana", "banana": "香蕉",
+    "貓": "cat", "cat": "貓",
+    "狗": "dog", "dog": "狗",
+    "書": "book", "book": "書",
+    "桌子": "table", "table": "桌子",
+    "椅子": "chair", "chair": "椅子",
+    "房子": "house", "house": "房子",
+    "汽車": "car", "car": "汽車",
+    "學校": "school", "school": "學校",
+    "老師": "teacher", "teacher": "老師",
+    "學生": "student", "student": "學生",
+    "咖啡": "coffee", "coffee": "咖啡",
+    "茶": "tea", "tea": "茶",
+    "醫生": "doctor", "doctor": "醫生",
+    "護士": "nurse",
+    "sad": "難過"
+}
+
+# 首頁
 @app.route('/')
-
 def index():
-    return render_template('index.html')
+    return render_template('index.html', QA=questions_answers)
 
+# 問答頁面
+@app.route('/ask', methods=['GET', 'POST'])
+def ask_question():
+    if request.method == 'POST':
+        q = request.form['question'].strip()
+        a = questions_answers.get(q, "抱歉，找不到這個詞的翻譯。")
+        return render_template('ask.html', question=q, answer=a)
+    return render_template('ask.html', question="", answer="")
+
+# 其他頁面
 @app.route('/competition')
 def competition():
     return render_template('competition.html')
@@ -31,66 +62,6 @@ def electives():
 def ai():
     return render_template('ai.html')
 
-from flask import Flask, render_template, request
-
-app = Flask(__name__)
-
-# 建立問答集 Store questions and answers in a simple list for demonstration purposes
-questions_answers = {
-    "蘋果": "apple",
-    "apple": "蘋果",
-    "香蕉": "banana",
-    "banana": "香蕉",
-    "貓": "cat",
-    "cat": "貓",
-    "狗": "dog",
-    "dog": "狗",
-    "書": "book",
-    "book": "書",
-    "桌子": "table",
-    "table": "桌子",
-    "椅子": "chair",
-    "chair": "椅子",
-    "房子": "house",
-    "house": "房子",
-    "汽車": "car",
-    "car": "汽車",
-    "學校": "school",
-    "school": "學校",
-    "老師": "teacher",
-    "teacher": "老師",
-    "學生": "student",
-    "student": "學生",
-    "咖啡": "coffee",
-    "coffee": "咖啡",
-    "茶": "tea",
-    "tea": "茶",
-    "醫生": "doctor",
-    "doctor": "醫生",
-    "護士": "nurse",
-    "sad": "難過"
-}
-
-
-
-# 首頁/的處理
-@app.route('/')
-def index():
-    return render_template('index.html', QA=questions_answers)
-
-# 網頁/ask的處理
-@app.route('/ask', methods=['GET', 'POST'])
-def ask_question():
-    if request.method == 'POST':
-        q = request.form['question']
-        a = questions_answers[q]
-        return render_template('ask.html', question=q, answer=a)
-    return render_template('ask.html', question="", answer="")
-
+# 啟動伺服器
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-  
+    app.run(debug=True, host='0.0.0.0', port=8080)
