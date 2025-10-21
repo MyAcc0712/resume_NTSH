@@ -64,6 +64,12 @@ def electives():
 @app.route('/ai')
 def ai():
     return render_template('ai.html')
+
+# 首頁/的處理
+@app.route('/')
+def index():
+    return render_template('index.html', QA=questions_answers)
+
     
 # 網頁/ask的處理
 @app.route('/ask', methods=['GET', 'POST'])
